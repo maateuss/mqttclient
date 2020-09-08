@@ -1,5 +1,5 @@
 var mqtt = require('mqtt')
-var client = mqtt.connect('ws://ienvironmentbroker.azurewebsites.net:8080')
+var client = mqtt.connect('mqtt://*URL')
 
 client.on('connect', function(){
     client.subscribe('topicoTeste')
