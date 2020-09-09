@@ -1,9 +1,15 @@
 var mqtt = require('mqtt')
-var client = mqtt.connect('mqtt://*URL')
+var client = mqtt.connect('mqtt://URL:1883')
+const { Question } = require('./util')
 
 client.on('connect', function(){
-    client.subscribe('topicoTeste')
+    askForTopic();
 })
+
+async function askForTopic(){
+    const topico = await Question("informe o topico:");
+    client.subscribe(topico)
+}
 
 client.on('message', function(topic, message){
     context = message.toString();
